@@ -7,6 +7,7 @@ public class Individual {
     double[] goals;
     int n; // Número de vezes que o ponto foi dominado.
     int rank; // Número de fronteiras que pertence.
+    double crowdingDistance;
 
     public Individual(int genesAmount, int goalsAmount) {
         this.genes = new double[genesAmount];
@@ -18,6 +19,10 @@ public class Individual {
         this.genes = genes;
         this.goals = goals;
         this.dominatedSet = new LinkedList<>();
+    }
+
+    public Individual(double[] genes) {
+        this.genes = genes;
     }
 
 }
