@@ -1,3 +1,7 @@
+package util;
+
+import individual.Individual;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +11,7 @@ public final class FNDS {
         List<List<Individual>> fronts = new ArrayList<>();
         List<Individual> currentFront = new ArrayList<>();
 
-        // 1ª PARTE FNDS
+        // 1ª PARTE util.FNDS
 
         for (Individual p : population) {
             p.n = 0;
@@ -15,7 +19,7 @@ public final class FNDS {
                 if (dominates(p, q))
                     p.dominatedSet.add(q);
                 else if (dominates(q, p))
-                    p.n += 1;
+                    p.n++;
             }
 
             if (p.n == 0) {
@@ -49,13 +53,13 @@ public final class FNDS {
     private static boolean dominates(Individual p, Individual q) {
         int allMinors = 0, atLeastOneMinor = 0;
 
-        for (int i = 0; i < p.goals.length; i++) {
-            if (p.goals[i] <= q.goals[i])
+        for (int i = 0; i < p.getGoals().length; i++) {
+            if (p.getGoals()[i] <= q.getGoals()[i])
                 allMinors++;
-            if (p.goals[i] < q.goals[i])
+            if (p.getGoals()[i] < q.getGoals()[i])
                 atLeastOneMinor++;
         }
 
-        return ((p.goals.length == allMinors) && (atLeastOneMinor >= 1));
+        return ((p.getGoals().length == allMinors) && (atLeastOneMinor >= 1));
     }
 }
